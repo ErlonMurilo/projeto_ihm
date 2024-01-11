@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>SQL School</title>
+</head>
+<body>
+    <audio id="hoverSound" src="sounds/rollover.mp3"></audio>
+    <audio id="clickSound" src="sounds/click.mp3"></audio>
+    <audio id="levelCompleteSound" src="sounds/levelComplete.wav"></audio>
+    <audio id="acertoSound" src="sounds/acerto.mp3"></audio>
+    <audio id="erroSound" src="sounds/erro.mp3"></audio>
+    <audio id="bloqueadoSound" src="sounds/bloqueado.mp3"></audio>
+    <audio id="backgroundMusic" loop>
+        <source src="sounds/background_music.wav" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    
+    <div id="gameContainer">
+
+        <div id="faseAvanced">
+            <div id="buttonAvancar"></div>
+            <div id="confirmFase2">
+            </div>
+            <div id="confirmFase3">
+            </div>
+        </div>
+        
+        <div id="soundButton"></div>
+        <div id="musicButton"></div>
+        <div id="startButton">INICIAR JOGO</div>
+        
+        <div id="settingsButton"></div>
+        <div id="backButton"></div>
+        
+        <img id="barraSuperior" src="imagens/barra_superior.png" alt="barra_superior">
+        
+        <div id="settingsPanel">
+            
+            <div id="soundSettings">
+                <div id="soundButtonInSettings"></div>
+                <input type="range" id="soundVolumeBar" min="0" max="100" step="1" value="0">
+                
+            </div>
+
+            <div id="musicSettings">
+                <div id="musicButtonInSettings"></div>
+                <input type="range" id="musicVolumeBar" min="0" max="100" step="1" value="0">
+            </div>
+
+            <div id="painelButonsSettings">
+                <div id="closeSettings"></div>
+            </div>
+
+        </div>
+        
+        <div id="backButtonScreenLevels"></div>
+        <div id="backButtonFase"></div>
+        <div id="menuLevel"></div>
+        
+        <div id="screenLevels">
+
+            <div id="circle1" class="circle"></div>
+            <div id="circle2" class="circle"></div>
+            <div id="circle3" class="circle"></div>
+
+            <div id="circle4" class="circle"></div>
+            <div id="circle5" class="circle"></div>
+            <div id="circle6" class="circle"></div>
+            
+            <div id="circle2Block" class="circle"></div>
+            <div id="circle4Block" class="circle"></div>
+            <div id="circle6Block" class="circle"></div>
+        </div>
+
+        <div id="confirmacao">
+            <div id="confirmacaoSair" class="confirmacao">
+                <p>O seu progresso será perdido! Tem certeza que deseja sair?</p>
+                <div id="confirmarSair">Sim</div>
+                <div id="cancelarSair">Cancelar</div>
+            </div>
+        </div>
+
+        <div id="confirmacao2">
+            <div id="confirmacaoSair2" class="confirmacao">
+                <p>O seu progresso será perdido! Tem certeza que deseja sair?</p>
+                <div id="confirmarSair2">Sim</div>
+                <div id="cancelarSair2">Cancelar</div>
+            </div>
+        </div>
+
+        <div id="fundoLevelComplete">
+            <div id="levelComplete">
+                <p>Nível Concluído,<br>
+                    Parabéns!</p>
+
+                <div id="reiniciarFaseButton1"></div>
+                <div id="reiniciarFaseButton2"></div>
+                <div id="reiniciarFaseButton3"></div>
+                <div id="reiniciarFaseButton4"></div>
+                <div id="reiniciarFaseButton5"></div>
+                <div id="reiniciarFaseButton6"></div>
+                
+                <div id="voltarMenuButton"></div>
+
+                <div id="avancarFaseButton1"></div>
+                <div id="avancarFaseButton2"></div>
+                <div id="avancarFaseButton3"></div>
+                <div id="avancarFaseButton4"></div>
+                <div id="avancarFaseButton5"></div>
+            </div>
+        </div>
+
+        <div id="blockContainerLevel1">
+            <h3>
+                Agora é sua vez, lembre do exemplo do professor e relacione as palavras ao lado na ordem correta 
+                para criar a base de dados com nome <strong>"escola"</strong>:
+            </h3>
+            <div id="emptyBlocks1">
+                <div id="emptyBlock1" class="emptyBlock droppable">1</div>
+                <div id="emptyBlock2" class="emptyBlock droppable">2</div>
+                <div id="emptyBlock3" class="emptyBlock droppable">3</div>
+                <div id="emptyBlock4" class="emptyBlock droppable">4</div>
+            </div>
+            <div id="blocks1">
+                <div id="block1" class="draggable" data-block-number="2">database</div>
+                <div id="block2" class="draggable" data-block-number="3">escola</div>
+                <div id="block3" class="draggable" data-block-number="1">create</div>
+                <div id="block4" class="draggable" data-block-number="4">;</div>
+            </div>
+        </div>
+
+        <div id="blockContainerLevel2">
+            <h3>
+                Agora relacione as palavras ao lado na ordem correta 
+                para selecionar a base de dados <strong>"escola"</strong>:
+            </h3>
+            <div id="emptyBlocks2">
+                <div id="emptyBlock5" class="emptyBlock droppable">1</div>
+                <div id="emptyBlock6" class="emptyBlock droppable">2</div>
+                <div id="emptyBlock7" class="emptyBlock droppable">3</div>
+            </div>
+            <div id="blocks2">
+                <div id="block5" class="draggable" data-block-number="7">;</div>
+                <div id="block6" class="draggable" data-block-number="5">use</div>
+                <div id="block7" class="draggable" data-block-number="6">escola</div>
+            </div>
+        </div>
+        
+        <div id="blockContainerLevel3">
+            <h3>
+                Complete os comandos SQL abaixo para criar a tabela <strong>"alunos"</strong>:
+            </h3>
+            <div id="emptyBlocks3">
+                <div id="emptyBlock8" class="emptyBlock droppable">CREATE</div>
+                <div id="emptyBlock9" class="emptyBlock droppable">1</div>
+                <div id="emptyBlock10" class="emptyBlock droppable">2</div>
+                <div id="emptyBlock11" class="emptyBlock droppable">(</div>
+                <div id="emptyBlock12" class="emptyBlock droppable">id</div>
+                <div id="emptyBlock13" class="emptyBlock droppable">INT</div>
+                <div id="emptyBlock14" class="emptyBlock droppable">3</div>
+                <div id="emptyBlock15" class="emptyBlock droppable">,</div>
+                <div id="emptyBlock16" class="emptyBlock droppable">4</div>
+                <div id="emptyBlock17" class="emptyBlock droppable">VARCHAR(50),</div>
+                <div id="emptyBlock18" class="emptyBlock droppable">nota</div>
+                <div id="emptyBlock19" class="emptyBlock droppable">5</div>
+                <div id="emptyBlock20" class="emptyBlock droppable">);</div>
+            </div>
+            <div id="blocks3">
+                <div id="block8" class="draggable" data-block-number="10">alunos</div>
+                <div id="block9" class="draggable" data-block-number="19">DECIMAL(2, 2)</div>
+                <div id="block10" class="draggable" data-block-number="9">TABLE</div>
+                <div id="block11" class="draggable" data-block-number="14">PRIMARY KEY</div>
+                <div id="block12" class="draggable" data-block-number="16">nome</div>
+            </div>
+        </div>
+        
+        
+        <div id="blockContainerLevel4">
+            <h3>Complete os comandos SQL abaixo para inserir os dados na tabela, lembrando-se de ordenar corretamente os tipos de dados e suas categorias:</h3>
+            <div id="blocks4">
+                <div id="block13" class="draggable" data-block-number="33">8.4</div>
+                <div id="block14" class="draggable" data-block-number="26">nome</div>
+                <div id="block15" class="draggable" data-block-number="31">1</div>
+            </div>
+            <div id="emptyBlocks4">
+                <div id="emptyBlock21" class="emptyBlock droppable">INSERT</div>
+                <div id="emptyBlock22" class="emptyBlock droppable">INTO</div>
+                <div id="emptyBlock23" class="emptyBlock droppable">alunos</div>
+                <div id="emptyBlock24" class="emptyBlock droppable">(</div>
+                <div id="emptyBlock25" class="emptyBlock droppable">id</div>
+                <div id="emptyBlock26" class="emptyBlock droppable">1</div>
+                <div id="emptyBlock27" class="emptyBlock droppable">nota</div>
+                <div id="emptyBlock28" class="emptyBlock droppable">)</div>
+                <div id="emptyBlock29" class="emptyBlock droppable">VALUES</div>
+                <div id="emptyBlock30" class="emptyBlock droppable">(</div>
+                <div id="emptyBlock31" class="emptyBlock droppable">2</div>
+                <div id="emptyBlock32" class="emptyBlock droppable">"Lucas"</div>
+                <div id="emptyBlock33" class="emptyBlock droppable">3</div>
+                <div id="emptyBlock34" class="emptyBlock droppable">) ;</div>
+            </div>
+        </div>
+
+        <div id="blockContainerLevel5">
+            <h3>Apenas um desses comandos está escrito corretamente, selecione o comando correto:</h3>
+            <div id="blocks5">
+                <div id="block16" class="draggable" data-block-number="0">SELECT FROM alunos;</div>
+                <div id="block17" class="draggable" data-block-number="0">SELECT * alunos;</div>
+                <div id="block18" class="draggable" data-block-number="35">SELECT id, nome, salario FROM alunos;</div>
+            </div>
+            <div id="emptyBlocks5">
+                <div id="emptyBlock35" class="emptyBlock droppable">Arraste até aqui o comando correto</div>
+            </div>
+        </div>
+
+        <div id="blockContainerLevel6">
+            <h3>Selecione apenas o registro que é selecionado pelo comando <strong>SELECT * FROM alunos WHERE idade > 20;</strong></h3>
+            <div id="blocks6">
+                <div id="block19" class="draggable" data-block-number="0">(id=2,      nome="João",      idade=18)</div>
+                <div id="block20" class="draggable" data-block-number="36">(id=1,      nome=Maria,      idade=25)</div>
+                <div id="block21" class="draggable" data-block-number="0">(id=3,      nome=Joana,      idade=20)</div>
+            </div>
+            <div id="emptyBlocks6">
+                <div id="emptyBlock36" class="emptyBlock droppable">Arraste até aqui o comando correto</div>
+            </div>
+        </div>
+
+        
+        <div id="blockContainer">
+            <div id="levelBlock1" class="block"> <img id="level_map1" src="imagens/level_map1.png" class="level_map" alt="level_map1"></div>
+            <div id="caminho_1"><img src="imagens/caminho1.png" class="caminho" alt="caminho"></div>
+            <div id="levelBlock2" class="block"><img id="level_map2" src="imagens/level_map2Block.png" class="level_map" alt="level_map2"></div>
+            <div id="caminho_2"><img src="imagens/caminho1.png" class="caminho" alt="caminho"></div>
+            <div id="levelBlock3" class="block"><img id="level_map3" src="imagens/level_map3Block.png" class="level_map" alt="level_map"></div>
+        </div>
+
+        <img src="imagens/sql_school.png" id="title" alt="title_game">
+        
+        <div id="painel"></div>
+
+
+        <div class="tutorial" id="tutorial">
+            <div id="anteriorBlockButton"></div>
+            <div id="tutorialScreens">
+                <div class="tutorial-screen" id="tutorialScreen1">
+                    <p>Rubinho acabou de iniciar sua jornada na SQL School, 
+                        a escola que ensina como desenvolver na linguagem SQL!
+                    </p>
+                    <img src="imagens/2.png" alt="2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen2">
+                    <p>E hoje, os alunos que solucionarem os desafios propostos pelo professor 
+                        serão liberados mais cedo. Ajude Rubinho com as tarefas!
+                    </p>
+                    <img src="imagens/2.png" alt="2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen3">
+                    <p>Como desafio inicial, o professor solicitou a elaboração de um comando 
+                        SQL para a criação de uma base de dados, apresentando o seguinte 
+                        exemplo:
+                    </p>
+                    <img src="imagens/fase1.1.png" alt="1.1">
+                </div>
+            </div>
+            <div id="anteriorButton"></div>
+            <div id="proximoButton"></div>
+            <div id="tutorialIndicators">
+                <div class="tutorial-indicator" id="indicator1"></div>
+                <div class="tutorial-indicator" id="indicator2"></div>
+                <div class="tutorial-indicator" id="indicator3"></div>
+            </div>
+        </div>
+
+        <div class="tutorial" id="tutorial2">
+            <div id="anteriorBlockButton2"></div>
+            <div id="tutorialScreens2">
+                <div class="tutorial-screen" id="tutorialScreen4">
+                    <p>Depois de criar a base de dados <strong>"escola"</strong>, agora 
+                        o professor pediu para criar o comando que 
+                        seleciona um banco de dados já criado, observe 
+                        o exemplo abaixo:
+                    </p>
+                    <img src="imagens/fase2.1.png" alt="2.1">
+                </div>
+            </div>
+            <div id="anteriorButton2"></div>
+            <div id="proximoButton2"></div>
+            <div id="tutorialIndicators2">
+                <div class="tutorial-indicator" id="indicator4"></div>
+            </div>
+        </div>
+
+        <div class="tutorial" id="tutorial3">
+            <div id="anteriorBlockButton3"></div>
+            <div id="tutorialScreens3">
+                <div class="tutorial-screen" id="tutorialScreen5">
+                    <p>Diante do desafio inicial, o professor teve 
+                        a ideia de criar uma tabela para os <strong>"professores"</strong>
+                        da escola no banco de dados.
+                    </p>
+                    <img src="imagens/2.png" alt="2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen6">
+                    <p>Para criar a tabela <strong>"professores"</strong> ele mostrou o seguinte comando.
+                    </p>
+                    <img src="imagens/fase3.1.png" alt="3.1">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen7">
+                    <img src="imagens/fase3.2.png" alt="3.2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen8">
+                    <img src="imagens/fase3.3.png" alt="3.3">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen9">
+                    <img src="imagens/fase3.4.png" alt="3.4">
+                </div>
+            </div>
+            <div id="anteriorButton3"></div>
+            <div id="proximoButton3"></div>
+            <div id="tutorialIndicators3">
+                <div class="tutorial-indicator" id="indicator5"></div>
+                <div class="tutorial-indicator" id="indicator6"></div>
+                <div class="tutorial-indicator" id="indicator7"></div>
+                <div class="tutorial-indicator" id="indicator8"></div>
+                <div class="tutorial-indicator" id="indicator9"></div>
+            </div>
+        </div>
+
+        <div class="tutorial" id="tutorial4">
+            <div id="anteriorBlockButton4"></div>
+            <div id="tutorialScreens4">
+                <div class="tutorial-screen" id="tutorialScreen10">
+                    <p>Com a tabela pronta, o professor acho uma boa ideia 
+                        adicionar alguns registros.
+                    </p>
+                    <img src="imagens/2.png" alt="2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen11">
+                    <p>Para exemplificar como inserir os registros ele 
+                        demonstrou esse exemplo:
+                    </p>
+                    <img src="imagens/fase4.1.png" alt="4.1">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen12">
+                    <img src="imagens/fase4.2.png" alt="4.2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen13">
+                    <img src="imagens/fase4.3.png" alt="4.3">
+                </div>
+            </div>
+            <div id="anteriorButton4"></div>
+            <div id="proximoButton4"></div>
+            <div id="tutorialIndicators4">
+                <div class="tutorial-indicator" id="indicator10"></div>
+                <div class="tutorial-indicator" id="indicator11"></div>
+                <div class="tutorial-indicator" id="indicator12"></div>
+                <div class="tutorial-indicator" id="indicator13"></div>
+            </div>
+        </div>
+
+        <div class="tutorial" id="tutorial5">
+            <div id="anteriorBlockButton5"></div>
+            <div id="tutorialScreens5">
+                <div class="tutorial-screen" id="tutorialScreen14">
+                    <p>Depois de adicionar alguns registros, o professor resolver mostrar
+                        como selecionar os dados que estão armazenados no banco de dados.
+                    </p>
+                    <img src="imagens/2.png" alt="2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen15">
+                    <p>Para exemplificar como selecionar os registros, ele 
+                        demonstrou esse exemplo:
+                    </p>
+                    <img src="imagens/fase5.1.png" alt="5.1">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen16">
+                    <img src="imagens/fase5.2.png" alt="5.2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen17">
+                    <img src="imagens/fase5.3.png" alt="5.3">
+                </div>
+            </div>
+            <div id="anteriorButton5"></div>
+            <div id="proximoButton5"></div>
+            <div id="tutorialIndicators5">
+                <div class="tutorial-indicator" id="indicator14"></div>
+                <div class="tutorial-indicator" id="indicator15"></div>
+                <div class="tutorial-indicator" id="indicator16"></div>
+                <div class="tutorial-indicator" id="indicator17"></div>
+            </div>
+        </div>
+        
+        <div class="tutorial" id="tutorial6">
+            <div id="anteriorBlockButton6"></div>
+            <div id="tutorialScreens6">
+                <div class="tutorial-screen" id="tutorialScreen18">
+                    <p>Para se aprofundar um pouco mais na maneira de selecionar os registros,
+                         o professor propôs explorar o uso avançado da cláusula <strong>WHERE</strong>.
+                    </p>
+                    <img src="imagens/2.png" alt="2">
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen19">
+                    <p>Isso permite uma filtragem mais precisa dos dados, visando encontrar registros que 
+                        se encaixe em uma condição, como no exemplo: 
+                    </p>
+                    <img src="imagens/fase6.1.png" alt="6.1"> 
+                </div>
+                <div class="tutorial-screen" id="tutorialScreen20">
+                    <p>Isso permite uma filtragem mais precisa dos dados, visando encontrar registros que 
+                        se encaixe em uma condição, como no exemplo: 
+                    </p>
+                    <img src="imagens/fase6.2.png" alt="6.2"> 
+                </div>
+            </div>
+            <div id="anteriorButton6"></div>
+            <div id="proximoButton6"></div>
+            <div id="tutorialIndicators6">
+                <div class="tutorial-indicator" id="indicator18"></div>
+                <div class="tutorial-indicator" id="indicator19"></div>
+                <div class="tutorial-indicator" id="indicator20"></div>
+            </div>
+        </div>
+
+        <div id="tutorialLevels"></div>
+        <div id="tutorialLevels2"></div>
+        <div id="tutorialLevels3"></div>
+        <div id="tutorialLevels4"></div>
+        <div id="tutorialLevels5"></div>
+        <div id="tutorialLevels6"></div>
+
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

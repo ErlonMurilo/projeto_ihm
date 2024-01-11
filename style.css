@@ -1,0 +1,1299 @@
+@font-face {
+    font-family: Wolf Bane;
+    src: url('fonts/wolfsbane2.ttf') format(truetype);
+}
+
+@font-face {
+    font-family: Pixel;
+    src: url('fonts/Pixellari.ttf') format(truetype);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: Pixel;
+}
+
+#gameContainer {
+    width: 840px;
+    height: 640px;
+    background-image: url(imagens/background_desfoque.png);
+    background-repeat: no-repeat;
+    background-color: #333;
+    background-size: cover;
+    background-position: bottom;
+    
+    border-radius: 10px;
+    box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.5);
+
+    cursor: url(imagens/cursorGauntlet_grey.png), default;
+    position: relative;
+
+    overflow: hidden;
+    
+}
+
+#title{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: titleAnimation 5s infinite both;
+    z-index: 0;
+
+    width: 400px;
+}
+
+@keyframes titleAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+
+#startButton {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+
+    width: 300px;
+    height: 147px;
+
+    background-color: transparent;
+    background-image: url(imagens/button1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+    padding: 10px 20px;
+    color: #377306;
+    text-shadow: -2px -2px 0px white, -2px 2px 0px white, 2px -2px 0px white, 2px 0px 0px white;
+    font-weight: bolder;
+    border-radius: 11px;
+    border: none;
+    font-family: Wolf Bane, Arial, Helvetica, sans-serif;
+    font-size: 70px;
+    cursor: url(imagens/cursorHand_grey.png),default;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#settingsButton, #soundButton, #musicButton, #backButton, #backButtonFase, #menuLevel{
+    position: absolute;
+    padding: 5px 10px;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#settingsButton{
+    width: 40px;
+    height: 50px;
+    top: 10px;
+    right: 10px;
+    background-image: url(imagens/config01.png);
+    background-size: cover;
+    top: 10px;
+    right: 10px;
+}
+
+#soundButton{
+    width: 40px;
+    height: 50px;
+    background-image: url(imagens/Sound04.png);
+    background-size: cover;
+    top: 80px;
+    right: 10px;
+}
+
+#musicButton{
+    width: 40px;
+    height: 50px;
+    background-image: url(imagens/Music04.png);
+    background-size: cover;
+    top: 150px;
+    right: 10px;
+}
+
+
+#backButton, #backButtonFase{
+    display: none;
+    width: 40px;
+    height: 50px;
+    background-image: url(imagens/Back01.png);
+    background-size: cover;
+    top: 10px;
+    left: 10px;
+}
+
+
+
+
+
+
+
+
+#barraSuperior{
+    display: none;
+    z-index: 0;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#blockContainer {
+    display: none;
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #E3C88B;
+    height: 500px;
+    width: 800px;
+    border-radius: 2.25em;
+    box-shadow: 0 -5px #CD8340, 0 5px #5B3514;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 5px;
+    z-index: 1;
+}
+
+
+.block:hover {
+    transform: scale(1.2);
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+.level_map{
+    width: 225px;
+}
+
+#caminho_1{
+    position: absolute;
+    left: 23%;
+}
+
+#caminho_1 img{
+    width: 150px;
+}
+
+#caminho_2{
+    position: absolute;
+    left: 58%;
+}
+
+#caminho_2 img{
+    width: 150px;
+}
+
+
+
+
+
+
+
+
+#settingsPanel {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 350px;
+    background-image: url(imagens/painelConfig.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    z-index: 3;
+}
+
+#closeSettings {
+    position: absolute;
+    top: 95%;
+    left: 51.5%;
+    transform: translate(-50%, -50%);
+    width: 205px;
+    height: 100px;
+    background-image: url(imagens/buttonSave1.png);
+    background-size: cover;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#soundSettings, #musicSettings{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+#soundButtonInSettings, #musicButtonInSettings {
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+    padding: 5px 10px;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#soundButtonInSettings {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    background-image: url(imagens/Sound04.png);
+}
+
+#musicButtonInSettings {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    background-image: url(imagens/Music04.png);
+}
+
+#soundVolumeBar, #musicVolumeBar{
+    transform: scale(1.8);
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#soundVolumeBar{
+    position: absolute;
+    top: 35%;
+    left: 45%;
+}
+
+#musicVolumeBar{
+    position: absolute;
+    top: 55%;
+    left: 45%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none; 
+    outline: none;
+    overflow: hidden;
+    border-radius: 2.25em;
+    box-shadow: 0 -1px #CD8340, 0 1px #5B3514;
+}
+
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #E3C88B;
+    border-radius: 2.25em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none; 
+    height: 12px;
+    width: 12px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #78E200;
+    box-shadow: -407px 0 0 400px #78E200;
+  }
+
+
+#painel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-image: url(imagens/painel4.png);
+    z-index: 1;
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.circle{
+    display: none;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#circle1{
+    background-image: url(imagens/buttonFase1.1.png);
+    display: none;
+    position: absolute;
+    top: 170px;
+    left: 180px;
+}
+
+#circle2{
+    background-image: url(imagens/buttonFase2.1.png);
+    display: none;
+    position: absolute;
+    top: 400px;
+    left: 400px;
+}
+
+#circle3{
+    background-image: url(imagens/buttonFase3.1.png);
+    display: none;
+    position: absolute;
+    top: 120px;
+    left: 250px;
+}
+
+#circle4{
+    background-image: url(imagens/buttonFase4.1.png);
+    display: none;
+    position: absolute;
+    top: 540px;
+    left: 470px;
+}
+
+#circle5{
+    background-image: url(imagens/buttonFase5.1.png);
+    display: none;
+    position: absolute;
+    top: 550px;
+    left: 500px;
+}
+
+#circle6{
+    background-image: url(imagens/buttonFase6.1.png);
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 640px;
+}
+
+
+
+
+
+
+
+
+#circle2Block{
+    background-image: url(imagens/block.png);
+    position: absolute;
+    top: 400px;
+    left: 400px;
+}
+
+#circle4Block{
+    background-image: url(imagens/block.png);
+    position: absolute;
+    top: 540px;
+    left: 470px;
+}
+
+#circle6Block{
+    background-image: url(imagens/block.png);
+    position: absolute;
+    top: 200px;
+    left: 640px;
+}
+
+
+
+
+
+
+
+
+
+
+
+#screenLevels {
+    display: none;
+
+    background-color: #465981;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    height: 546px;
+    width: 840px;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#backButtonScreenLevels{
+    display: none;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url(imagens/Back01.png);
+    background-size: cover;
+    top: 10px;
+    left: 10px;
+}
+
+#menuLevel{
+    display: none;
+    width: 40px;
+    height: 50px;
+    background-image: url(imagens/menuLevel01.png);
+    background-size: cover;
+    top: 10px;
+    left: 80px;
+}
+
+#confirmacao{
+    display: none;
+    top: 0%;
+    position: absolute;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.788);
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.confirmacao {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 260px;
+    background-image: url(imagens/painel2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    text-align: center;
+}
+
+.confirmacao p {
+    position: fixed;
+    font-size: 25px;
+    width: 300px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    margin: 0 0 10px;
+}
+
+#confirmarSair{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 200px;
+    left: 15%;
+    background-image: url(imagens/button1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 102px;
+    font-family: Wolf Bane;
+    font-size: 30px;
+    color: #377306;
+    text-shadow: -2px -2px 0px white, -2px 2px 0px white, 2px -2px 0px white, 2px 0px 0px white;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#cancelarSair{
+    position: fixed;
+    display: flex;
+    top: 200px;
+    right: 15%;
+    align-items: center;
+    justify-content: center;
+    background-image: url(imagens/buttonRed1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 102px;
+    font-family: Wolf Bane;
+    font-size: 30px;
+    text-Shadow: -2px -2px 0px white, -2px 2px 0px white, 2px -2px 0px white, 2px 0px 0px white;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+
+
+
+
+
+
+
+
+
+#confirmacao2{
+    display: none;
+    top: 0%;
+    position: absolute;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.788);
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#confirmarSair2{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 200px;
+    left: 15%;
+    background-image: url(imagens/button1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 102px;
+    font-family: Wolf Bane;
+    font-size: 30px;
+    color: #377306;
+    text-shadow: -2px -2px 0px white, -2px 2px 0px white, 2px -2px 0px white, 2px 0px 0px white;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#cancelarSair2{
+    position: fixed;
+    display: flex;
+    top: 200px;
+    right: 15%;
+    align-items: center;
+    justify-content: center;
+    background-image: url(imagens/buttonRed1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 102px;
+    font-family: Wolf Bane;
+    font-size: 30px;
+    text-Shadow: -2px -2px 0px white, -2px 2px 0px white, 2px -2px 0px white, 2px 0px 0px white;
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+
+
+
+
+
+
+
+
+
+
+#tutorialLevels, #tutorialLevels2, #tutorialLevels3, #tutorialLevels4, #tutorialLevels5, #tutorialLevels6 {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+    padding: 5px 10px;
+    background-image: url(imagens/tutorial01.png);
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+
+#fundoLevelComplete{
+    display: none;
+    top: 0%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.692);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+#levelComplete p{
+    position: absolute;
+    text-align: center;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+
+
+#levelComplete{
+    background-image: url(imagens/painel1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 530px;
+    width: 300px;
+}
+
+
+#reiniciarFaseButton1, #reiniciarFaseButton2, #reiniciarFaseButton3, #reiniciarFaseButton4, #reiniciarFaseButton5, #reiniciarFaseButton6{
+    display: none;
+    position: absolute;
+    padding: 5px 10px;
+    cursor: url(imagens/cursorHand_grey.png),default;
+    background-image: url(imagens/restart01.png);
+
+    top: 450px;
+    left: 320px;
+    
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+}
+
+#voltarMenuButton{
+    position: absolute;
+    padding: 5px 10px;
+    cursor: url(imagens/cursorHand_grey.png),default;
+    background-image: url(imagens/menuLevel01.png);
+
+    top: 450px;
+    left: 390px;
+    
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+}
+
+#avancarFaseButton1, #avancarFaseButton2, #avancarFaseButton3, #avancarFaseButton4, #avancarFaseButton5{
+    display: none;
+    position: absolute;
+    padding: 5px 10px;
+    cursor: url(imagens/cursorHand_grey.png),default;
+    background-image: url(imagens/proximo01.png);
+
+    top: 450px;
+    left: 460px;
+    
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+}
+
+
+
+/* blocos do jogo */
+
+#blockContainerLevel1 {
+    display: none;
+    grid-template-columns: 630px 120px;
+    grid-template-rows: 300px 75px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    background-color: antiquewhite;
+}
+
+h3 {
+    text-align: justify;
+    font-size: 25px;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    padding: 10px;
+    border-bottom: 2px solid #000000;
+    text-transform: uppercase;
+}
+
+#emptyBlocks1{
+    display: flex;
+    justify-content: center;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#blocks1{
+    display: block;
+    grid-column: 2;
+    grid-row: 1 /  span 2;
+    border-left: 2px solid #000000;
+}
+
+.draggable{
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+.draggable, .emptyBlock {
+    width: 100px;
+    height: 50px;
+    background-color: #3498db;
+    border: 2px solid #2980b9;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 900;
+    line-height: 50px;
+    margin: 5px;
+    font-size: 20px;
+    text-shadow: 2px 2px black;
+    color: white;
+}
+
+.droppable {
+    border-style: dashed;
+}
+
+
+#blockContainerLevel2, #blockContainerLevel3, #blockContainerLevel4, #blockContainerLevel5, #blockContainerLevel6 {
+    display: none;
+    grid-template-columns: 630px 120px;
+    grid-template-rows: 300px 75px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    background-color: antiquewhite;
+}
+
+#emptyBlocks2{
+    display: flex;
+    justify-content: center;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#blocks2, #blocks3{
+    display: block;
+    grid-column: 2;
+    grid-row: 1 /  span 2;
+    border-left: 2px solid #000000;
+}
+
+#blocks4{
+    display: block;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+#blockContainerLevel3{
+    grid-template-columns: 630px 110px;
+    grid-template-rows: 360px 75px;
+}
+
+#blockContainerLevel3 h3{
+    border: none;
+}
+
+#blockContainerLevel4{
+    grid-template-columns: 630px 110px;
+    grid-template-rows: 360px 75px;
+}
+
+#blockContainerLevel4 h3{
+    border: none;
+    border-right: 2px solid black;
+}
+
+#block9{
+    font-size: 15px;
+}
+
+#block11{
+    font-size: 15px;
+}
+
+#emptyBlock8{
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock9{
+    position: absolute;
+    top: 100px;
+    left: 165px;
+}
+
+#emptyBlock10{
+    position: absolute;
+    top: 100px;
+    left: 280px;
+}
+
+#emptyBlock11{
+    position: absolute;
+    top: 100px;
+    left: 395px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock12{
+    position: absolute;
+    top: 170px;
+    left: 100px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock13{
+    position: absolute;
+    top: 170px;
+    left: 215px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock14{
+    position: absolute;
+    top: 170px;
+    left: 325px;
+}
+
+#emptyBlock15{
+    position: absolute;
+    top: 170px;
+    left: 440px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock16{
+    position: absolute;
+    top: 240px;
+    left: 100px;
+}
+
+#emptyBlock17{
+    position: absolute;
+    top: 240px;
+    left: 215px;
+    font-size: 15px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock18{
+    position: absolute;
+    top: 310px;
+    left: 100px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock19{
+    position: absolute;
+    top: 310px;
+    left: 215px;
+}
+#emptyBlock20{
+    position: absolute;
+    top: 380px;
+    left: 50px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+
+#blockContainerLevel5, #blockContainerLevel6{
+    display: none;
+    width: 750px;
+    height: 450px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    background-color: antiquewhite;
+}
+
+#block16, #block17, #block18, #block19, #block20, #block21{
+    margin: auto;
+    margin-top: 10px;
+    width: 600px;
+}
+
+#emptyBlock21{
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock22{
+    position: absolute;
+    top: 150px;
+    left: 165px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock23{
+    position: absolute;
+    top: 150px;
+    left: 280px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock24{
+    position: absolute;
+    top: 150px;
+    left: 395px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock25{
+    position: absolute;
+    top: 220px;
+    left: 50px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock26{
+    position: absolute;
+    top: 220px;
+    left: 165px;
+}
+
+#emptyBlock27{
+    position: absolute;
+    top: 220px;
+    left: 280px;   
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlock28{
+    position: absolute;
+    top: 220px;
+    left: 395px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock29{
+    position: absolute;
+    top: 290px;
+    left: 50px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock30{
+    position: absolute;
+    top: 290px;
+    left: 165px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock31{
+    position: absolute;
+    top: 290px;
+    left: 280px;
+}
+
+#emptyBlock32{
+    position: absolute;
+    top: 290px;
+    left: 395px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+#emptyBlock33{
+    position: absolute;
+    top: 360px;
+    left: 50px;
+}
+#emptyBlock34{
+    position: absolute;
+    top: 360px;
+    left: 165px;
+    background-color: #856a52;
+    border: 2px solid black;
+}
+
+#emptyBlocks5, #emptyBlocks6{
+    border-top: 2px solid black;
+    position: absolute;
+    width: 600px;
+    top: 320px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+ #emptyBlock35{
+    margin: auto;
+    margin-top: 60px;
+    width: 600px;
+    background-color: #6fbb32;
+    border-color: white;
+}
+
+#emptyBlock36{
+    margin: auto;
+    margin-top: 60px;
+    width: 600px;
+    background-color: #6fbb32;
+    border-color: white;
+}
+
+
+
+
+
+strong{
+    color:red;
+}
+
+.tutorial{
+    display: none;
+    top: 0%;
+    position: absolute;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.788);
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.tutorial img{
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+}
+
+#anteriorBlockButton, #anteriorBlockButton2,  #anteriorBlockButton3, #anteriorBlockButton4, #anteriorBlockButton5, #anteriorBlockButton6{
+    position: absolute;
+    display: block;
+    top: 550px;
+    left: 40px;
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+    padding: 5px 10px;
+    background-image: url(imagens/anterior04.png);
+}
+
+#anteriorButton, #anteriorButton2, #anteriorButton3, #anteriorButton4, #anteriorButton5, #anteriorButton6{
+    position: absolute;
+    display: none;
+    top: 550px;
+    left: 40px;
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+    padding: 5px 10px;
+    background-image: url(imagens/anterior01.png);
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+#proximoButton, #proximoButton2, #proximoButton3, #proximoButton4, #proximoButton5, #proximoButton6{
+    position: absolute;
+    top: 550px;
+    right: 40px;
+    width: 40px;
+    height: 50px;
+    background-size: cover;
+    padding: 5px 10px;
+    background-image: url(imagens/proximo01.png);
+    cursor: url(imagens/cursorHand_grey.png),default;
+}
+
+.tutorial-screen {
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 500px;
+    border-radius: 20px;
+    background-image: url(imagens/painel2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.tutorial-screen p{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 30px;
+    text-align: justify;
+    color: #3E301E;
+    font-weight: 900;
+}
+
+
+
+#tutorialIndicators, #tutorialIndicators2, #tutorialIndicators3, #tutorialIndicators4, #tutorialIndicators5, #tutorialIndicators6{
+    position: absolute;
+    top: 580px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.tutorial-indicator{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+}
+
+.tutorial-indicator.active {
+    background-color: #91ff00;
+}
+
+
+.animate {
+    animation: moveBlock 3s forwards;
+}
+
+@keyframes moveBlock {
+    0%{
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(
+            calc(var(--empty-block-left) - var(--block-left)),
+            calc(var(--empty-block-top) - var(--block-top))
+        );
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+
+#faseAvanced{
+    display: none;
+    top: 0%;
+    position: absolute;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.788);
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+}
+
+#confirmFase2{
+    display: none;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(imagens/fase2desbloqueio.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 520px;
+    width: 477px;
+}
+
+#confirmFase3{
+    display: none;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(imagens/fase3desbloqueio.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 520px;
+    width: 477px;
+}
+
+#buttonAvancar{
+    position: absolute;
+    top: 460px;
+    left: 50%;
+    transform: translate(-50%);
+    background-image: url(imagens/buttonAvancar1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 98px;
+    z-index: 1;
+}
+
+
+
+.green-flash {
+    animation: green-flash-animation 0.5s ease-out;
+}
+
+.red-flash {
+    animation: red-flash-animation 0.5s ease-out;
+}
+
+@keyframes green-flash-animation {
+    0%, 100% {
+        background-color: rgb(12, 218, 12);
+    }
+    50% {
+        background-color: rgb(107, 156, 107);
+    }
+}
+
+@keyframes red-flash-animation {
+    0%, 100% {
+        background-color: red;
+    }
+    50% {
+        background-color: rgb(165, 99, 99);
+    }
+}
