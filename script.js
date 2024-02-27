@@ -1086,12 +1086,21 @@ block1.addEventListener('click', function () {
     
     document.getElementById('circle1').style.display='block';
     
+    
+
     if(!faseBloqueada(2)){
         document.getElementById('circle2').style.display='block';
         document.getElementById('circle2Block').style.display='none';
+        var flashElement = document.getElementById('flashElement');
+    
+        flashElement.style.display = 'none';
     }else{
         document.getElementById('circle2').style.display='none';
         document.getElementById('circle2Block').style.display='block';
+        
+        var flashElement = document.getElementById('flashElement');
+    
+        flashElement.style.display = 'block';
     }
 
     document.getElementById('screenLevels').style.backgroundImage="url(imagens/map_fase1.png)";
@@ -1105,6 +1114,7 @@ block1.addEventListener('click', function () {
     document.getElementById('circle6Block').style.display='none';
     
 });
+
 
 block1.addEventListener("mouseover", function () {
     if (isSoundOn) {
@@ -1138,6 +1148,9 @@ block2.addEventListener('click', function () {
         document.getElementById('circle2').style.display='none';
         document.getElementById('circle5').style.display='none';
         document.getElementById('circle6').style.display='none';
+        var flashElement = document.getElementById('flashElement');
+    
+        flashElement.style.display = 'none';
 
         document.getElementById('circle2Block').style.display='none';
         document.getElementById('circle6Block').style.display='none';
@@ -1183,6 +1196,9 @@ block3.addEventListener('click', function () {
 
         document.getElementById('circle2Block').style.display='none';
         document.getElementById('circle4Block').style.display='none';
+        var flashElement = document.getElementById('flashElement');
+    
+        flashElement.style.display = 'none';
     }else{
         if (isSoundOn) {
             bloqueadoSound.play();

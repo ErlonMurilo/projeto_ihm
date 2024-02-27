@@ -456,6 +456,31 @@ input[type="range"]::-webkit-slider-thumb {
     border-bottom-right-radius: 10px;
 }
 
+.flash {
+    position: absolute;
+    background-image: url(imagens/seta.png);
+    background-size: cover;
+    background-color: white;
+    width: 90px; /* Adjust as needed */
+    height: 90px; /* Adjust as needed */
+
+    top: 160px;
+    left: 270px;
+
+    border-radius: 50%;
+    animation: flashAnimation 0.5s infinite alternate;
+    display: none; /* Initially hidden */
+}
+
+@keyframes flashAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 #backButtonScreenLevels{
     display: none;
     position: absolute;
